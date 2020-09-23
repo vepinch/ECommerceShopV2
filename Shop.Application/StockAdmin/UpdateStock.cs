@@ -18,7 +18,7 @@ namespace Shop.Application.StockAdmin
         public async Task<Response> Do(Request request)
         {
             var stocks = new List<Stock>();
-            foreach (var stock in request.Stocks)
+            foreach (var stock in request.Stock)
             {
                 stocks.Add(new Stock
                 {
@@ -35,7 +35,7 @@ namespace Shop.Application.StockAdmin
 
             return new Response
             {
-                Stocks = request.Stocks
+                Stock = request.Stock
             };
         }
 
@@ -48,12 +48,12 @@ namespace Shop.Application.StockAdmin
         }
         public class Request
         {
-            public IEnumerable<Stock> Stocks { get; set; }
+            public IEnumerable<Stock> Stock { get; set; }
         }
 
         public class Response
         {
-            public IEnumerable<Stock> Stocks { get; set; }
+            public IEnumerable<Stock> Stock { get; set; }
         }
 
     }
