@@ -1,5 +1,4 @@
 ﻿using Shop.Database;
-using Shop.Domain.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
