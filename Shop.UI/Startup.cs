@@ -30,6 +30,13 @@ namespace Shop.UI
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(
                     Configuration.GetConnectionString("DefaultConnection")));
+
+            services.AddDistributedMemoryCache();
+            services.AddSession(options =>
+            {
+                options.Cookie.Name = "Cart";
+                options.Cookie.MaxAge = TimeSpan.FromDays(5);
+            });
             services.AddRazorPages();
             
         }
@@ -54,6 +61,8 @@ namespace Shop.UI
             app.UseRouting();
 
             app.UseAuthorization();
+
+            app.UseSession();
 
             app.UseEndpoints(endpoints =>
             {

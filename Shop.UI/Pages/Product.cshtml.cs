@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Shop.Application.Products;
+using Shop.Application.Cart;
 using Shop.Database;
 
 namespace Shop.UI.Pages
@@ -18,6 +19,9 @@ namespace Shop.UI.Pages
             Context = context;
         }
 
+        [BindProperty]
+        public AddToCart.Request CartViewModel { get; set; }
+
         public GetProduct.ProductViewModel Product { get; set; }
         public IActionResult OnGet(string name)
         {
@@ -30,6 +34,13 @@ namespace Shop.UI.Pages
             {
                 return Page();
             }
+        }
+
+        public IActionResult OnPost()
+        {
+            new AddToCart(HttpContext.Session).Do(CartViewModel);
+
+            return RedirectToPage("Cart");
         }
     }
 }
